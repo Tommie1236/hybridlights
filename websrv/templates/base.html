@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Hybrid-Lights</title>
+        <link rel="stylesheet" href="/static/css/base.css">
+        {% block head %}
+            
+        {% endblock %}
+    </head>
+    <body>
+        <nav class="navbar">
+            <ul>
+                <li class="nav-li"><a href="/{{lang}}/about-us.html"><button class="nav-item">about us</button></a></li>
+                <li class="nav-li"><a href="/{{lang}}/pricing.html"><button class="nav-item">pricing</button></a></li>
+                <li class="nav-li"><a href="/{{lang}}/contact.html"><button class="nav-item">contact</button></a></li>
+            </ul>
+        </nav>
+        {% block content %}
+            
+        {% endblock %}
+        {% block js %}
+            
+        {% endblock %}
+    </body>
+</html>

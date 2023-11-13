@@ -1,24 +1,39 @@
 <html>
-    <head>
-        <title>Hybrid-Lights</title>
-        <link rel="stylesheet" href="/static/css/base.css">
-        {% block head %}
-            
-        {% endblock %}
-    </head>
-    <body>
-        <nav class="navbar">
-            <ul>
-                <li class="nav-li"><a href="/{{lang}}/about-us.html"><button class="nav-item">about us</button></a></li>
-                <li class="nav-li"><a href="/{{lang}}/pricing.html"><button class="nav-item">pricing</button></a></li>
-                <li class="nav-li"><a href="/{{lang}}/contact.html"><button class="nav-item">contact</button></a></li>
-            </ul>
-        </nav>
-        {% block content %}
-            
-        {% endblock %}
-        {% block js %}
-            
-        {% endblock %}
-    </body>
+	<head>
+		<title>Hybrid-Lights</title>
+		<link rel="stylesheet" href="/static/css/base.css">
+		{% block head %}
+			
+		{% endblock %}
+	</head>
+	<body>
+		<div id="navbar">
+			<a href="/{{lang}}/index.html" style="display: inline-block;">
+				<img id="nav-logo" src="/static/assets/logo-c.png" alt="hybridcraft">
+			</a>
+			<ul class="nav-item">
+				<li class="nav-li"><a href="/{{lang}}/about-us.html"><button class="nav-but">about us</button></a></li>
+				<li class="nav-li"><a href="/{{lang}}/pricing.html"><button class="nav-but">pricing</button></a></li>
+				<li class="nav-li"><a href="/{{lang}}/contact.html"><button class="nav-but">contact</button></a></li>
+			</ul>
+			<!--
+				<div id="language-selector" onclick="toggleLanguageOptions()">
+					<img class="lang-img" src="/static/assets/flags/{{lang}}.svg" alt="{{lang}}">
+					{% for language in avl_languages %}
+					{% if language != lang %}
+					<a href="{{ request.path.replace(lang, language) }}" class="language-option">
+						<img src="/static/assets/flags/{{ language }}.svg" alt="{{ language }}">
+					</a>
+					{% endif %}
+					{% endfor %}
+				</div>
+			-->
+		</div>
+		{% block content %}
+			
+		{% endblock %}
+		{% block js %}
+			<script src="/static/js/base.js"></script>
+		{% endblock %}
+	</body>
 </html>

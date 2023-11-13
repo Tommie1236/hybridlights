@@ -15,12 +15,12 @@ body {
 
 #navbar {
     display: flex;
+    align-items: center;
     background-color: royalblue;
     padding: 20px;
     top: 0;
     position: sticky;
     overflow: hidden;
-    transition: 0.4s;
     top: 0;
 }
 

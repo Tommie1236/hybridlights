@@ -16,6 +16,7 @@ body {
 #navbar {
     display: flex;
     align-items: center;
+    transition: 0.4s;
     background-color: royalblue;
     padding: 20px;
     top: 0;

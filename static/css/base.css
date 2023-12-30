@@ -4,6 +4,10 @@ body {
     /*background-color: black;*/
 }
 
+h4 {
+    margin: 0;
+}
+
 #navbar > ul {
     display: inline-block;
     width: fit-content;
@@ -22,7 +26,6 @@ body {
     top: 0;
     position: sticky;
     overflow: hidden;
-    top: 0;
 }
 
 .nav-item {
@@ -46,5 +49,19 @@ body {
 #nav-logo {
     display: inline-block;
     transition: 0.4s;
+    max-height: 100px;
+}
+
+#footer {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: royalblue;
+    padding: 0 auto 0 auto;
+    width: 100%;
+    padding: 20px 0;
+}
+
+#fLogo {
+    display: inline-block;
     max-height: 100px;
 }

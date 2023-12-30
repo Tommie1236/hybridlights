@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Hybrid-Lights</title>
+		<title>Hybrid-Lights (dev site)</title>
 		<link rel="stylesheet" href="/static/css/base.css">
 		{% block head %}
 			
@@ -29,11 +29,26 @@
 				</div>
 			-->
 		</div>
-		{% block content %}
-			
-		{% endblock %}
-		{% block js %}
-			<script src="/static/js/base.js"></script>
-		{% endblock %}
+		{% block content %}{% endblock %}
+		<div id="footer">
+			<a href="/">
+				<img id="fLogo" src="/static/assets/logo-c.png" alt="hbridlights">
+			</a>
+			<div id="fSiteMap">
+				<h4>Sitemap</h4>
+			</div>
+			<div id="fCopyRight">
+				<h4>CopyRight</h5>
+				<p>Site created by <a href="https://www.github.com/tommie1236" target="_blank">Timo Oosterom</a> and <a href="https://github.com/ntdev-technology" target="_blank">NTDev-Technology</a></p>
+				</div>
+			<div id="fLegal">
+				<h4>Legal ?</h4>
+			</div>
+					
+
+		</div>
+
+		<script src="/static/js/base.js"></script>
+		{% block js %}{% endblock %}
 	</body>
 </html>

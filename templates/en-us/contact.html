@@ -3,7 +3,7 @@
 {% block title %}Contact{% endblock %}
 
 {% block head %}
-	<link rel="stylesheet" href="static/css/contact.css">
+	<!-- <link rel="stylesheet" href="{{url_for('static', filename = 'css/contact.css')}}"> -->
 {% endblock %}
 
 {% block content %}
@@ -12,6 +12,12 @@
 		<p>The site is still under development.</p>
 		<p>This page will come soon.</p>
 		<a href="/">Go Back</a>
+
+		<h3>Todo</h3>
+		<ul>
+			<li>- add contact form for reservations or questions</li>
+			<li>- add contact info</li>
+		</ul>
 		<p></p>
 	</center>
 {% endblock %}

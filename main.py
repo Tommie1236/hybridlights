@@ -1,28 +1,21 @@
-from flask import Flask, render_template, send_file, redirect
+from flask import Flask, render_template, send_file, redirect, request, flash, Response, get_flashed_messages
+from jinja2.exceptions import TemplateNotFound
 
 
 __version__ = '0.1'
 
+__supported_languages__ = [
+	'en-us'
+]
 
-app = Flask(__name__)
-app.config['SECTET_KEY'] = '08c228c4408845f48c579a04a000b218'
 
-@app.context_processor
-def load_jinja_defaults():
-	return {
-		'version': __version__,
-		'avl_languages': ['en-us', 'nl-nl']     # list of supported languages
-	}
-
-# hi
+app = Flask(__name__.split('.')[0])
+app.config['SECRET_KEY'] = '08c228c4408845f48c579a04a000b218'
 
 
 
-@app.route('/favicon.ico')
-def favicon():
-	return send_file('static/assets/favicon-temp.png')
 
-
+# Default redirects
 
 @app.route('/')
 def root():
@@ -32,6 +25,7 @@ def root():
 def lang(lang):
 	return redirect(f'/{lang}/index.html')
 
+# Endpoints
 
 @app.route('/<lang>/index.html')
 def index(lang):
@@ -51,7 +45,39 @@ def contact(lang):
 
 
 
+# Misc endpoints
 
+@app.context_processor
+def load_jinja_defaults():
+	return {
+		'version': __version__,
+		'avl_languages': __supported_languages__    # list of supported languages
+	}
+
+@app.route('/favicon.ico')
+def favicon():
+	return send_file('static/assets/favicon-temp.png')
+
+@app.route('/flash-messages')
+def flash_messages():
+	"""
+	with_categories
+	catagory
+	"""
+	kwargs = dict(request.args)
+	return get_flashed_messages(**kwargs)
+
+# Error Handlers
+
+@app.errorhandler(TemplateNotFound)
+def TemplateNotFoundHandler(e):
+	flash("Page doesn't exist. Redirecting to homepage.", 'error')
+	return redirect('/')
+
+@app.errorhandler(404)
+def pageNotFoundHandler(e):
+	flash("Page doesn't exist. Redirecting to homepage.", 'error')
+	return redirect('/')
 
 
 

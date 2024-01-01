@@ -15,9 +15,10 @@ function scrollFunction() {
 
 // Notifications
 
-const notContainer = document.getElementById('notContainer');
+const notCon = document.getElementById('notCon');
 
-function createNotification(message, type=NaN) {
+function createNotification(message, type='default') {
+  console.log(`${type} notification: ${message}`);
   const notification = document.createElement('div');
   notification.classList.add('notification')
 
@@ -40,21 +41,22 @@ function createNotification(message, type=NaN) {
 
   const closeBtn = document.createElement('div');
   closeBtn.className = 'notification-close';
-  closeBtn.innerHTML = '&times;';
+  closeBtn.innerHTML = '&nbsp&times&nbsp';
 
   closeBtn.addEventListener('click', function () {
-    notContainer.removeChild(notification);
+    notCon.removeChild(notification);
     adjustNotificationPositions();
   });
 
   notification.appendChild(text);
   notification.appendChild(closeBtn);
-  notContainer.appendChild(notification);
+  notCon.appendChild(notification);
 
+  // Timeout notifications???
   // setTimeout(function () {
-  //   notificationsContainer.removeChild(notification);
+  //   notCon.removeChild(notification);
   //   adjustNotificationPositions();
-  // }, 5000);
+  // }, 10000);
 
   adjustNotificationPositions();
 }
@@ -79,7 +81,7 @@ function get_flashed_messages() {
     "with-categories": true
   }
   }).then(response => { return response.json()
-  }).then(data => { console.log(data)
+  }).then(data => {
     for (var not of data){
       switch (not.type) {
         case 'error':

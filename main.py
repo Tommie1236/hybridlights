@@ -64,8 +64,15 @@ def flash_messages():
 	with_categories
 	catagory
 	"""
-	flash('etest', 'error')
-	options = ['with-categories', 'catagory']
+
+	flash('err-test', 'error')
+	flash('war-test', 'warning')
+	flash('def-test')
+	flash('newline\ntest')
+	options = [
+		'with-categories',
+		'catagory'
+		]
 
 	kwargs = dict()
 	if request.args:
@@ -89,12 +96,12 @@ def flash_messages():
 
 @app.errorhandler(TemplateNotFound)
 def TemplateNotFoundHandler(e):
-	flash("Page doesn't exist. Redirecting to homepage.", 'error')
+	flash("Page doesn't exist.\nRedirecting to homepage.", 'error')
 	return redirect('/')
 
 @app.errorhandler(404)
 def pageNotFoundHandler(e):
-	flash("Page doesn't exist. Redirecting to homepage.", 'error')
+	flash("Page doesn't exist.\nRedirecting to homepage.", 'error')
 	return redirect('/')
 
 

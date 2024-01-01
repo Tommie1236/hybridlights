@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_file, redirect, request, flash, Response, get_flashed_messages
+from flask import Flask, render_template, send_file, redirect, request, flash, Response, get_flashed_messages, jsonify
 from jinja2.exceptions import TemplateNotFound
 
 
@@ -64,8 +64,26 @@ def flash_messages():
 	with_categories
 	catagory
 	"""
-	kwargs = dict(request.args)
-	return get_flashed_messages(**kwargs)
+	flash('etest', 'error')
+	options = ['with-categories', 'catagory']
+
+	kwargs = dict()
+	if request.args:
+		kwargs = dict(request.args)
+
+	if request.headers:
+		for key, value in dict(request.headers).items():
+			key = key.lower()
+			if key in options:
+				kwargs[key.replace('-', '_')] = value
+	
+	if kwargs.get('with_categories'):
+		flash_messages = []
+		for mtype, message in get_flashed_messages(**kwargs):
+			flash_messages.append({'message': message, 'type': mtype})
+		return jsonify(flash_messages)
+	
+	return jsonify(get_flashed_messages(**kwargs))
 
 # Error Handlers
 

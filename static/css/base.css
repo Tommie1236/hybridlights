@@ -5,7 +5,6 @@ html, body {
 body {
     margin: 0;
     padding: 0;
-    /*background-color: black;*/
 }
 
 h4 {
@@ -69,4 +68,40 @@ h4 {
 #fLogo {
     display: inline-block;
     max-height: 100px;
+}
+
+.notification {
+    position: fixed;
+    top: 10px;
+    right: calc(50% - 150px);
+    width: 300px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.defNot {
+    background-color: #fff;
+    border-color: #fff;
+}
+
+.errNot {
+    background-color: #f00;
+    border-color: #f00;
+    color: #fff;
+}
+
+.warNot {
+    background-color: #00f;
+    border-color: #00f;
+    color: #fff;
+}
+
+.notification-close {
+    cursor: pointer;
 }

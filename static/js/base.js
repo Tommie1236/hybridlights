@@ -83,16 +83,10 @@ function get_flashed_messages() {
   }).then(response => { return response.json()
   }).then(data => {
     for (var not of data){
-      switch (not.type) {
-        case 'error':
-          createNotification(not.message, 'error');
-          break;
-        case 'warning':
-          createNotification(not.message, 'warning');
-          break;
-        default:
-          createNotification(not.message)
-          break;
+      if (not.type) {
+        createNotification(not.message, not.type)
+      } else {
+        createNotification(not.message)
       }
     }
   }).catch(err => console.error(err)

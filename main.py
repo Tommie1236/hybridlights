@@ -64,11 +64,12 @@ def flash_messages():
 	with_categories
 	catagory
 	"""
+	# notification tests:
+	# flash('err-test', 'error')
+	# flash('war-test', 'warning')
+	# flash('def-test')
+	# flash('newline\ntest')
 
-	flash('err-test', 'error')
-	flash('war-test', 'warning')
-	flash('def-test')
-	flash('newline\ntest')
 	options = [
 		'with-categories',
 		'catagory'

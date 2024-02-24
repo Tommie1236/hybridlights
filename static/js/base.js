@@ -1,17 +1,15 @@
 // Navbar resize
+var logo = document.getElementById('nav-logo');
 
-window.onscroll = function() {scrollFunction()};
-const navLogo = document.getElementById("nav-logo")
+window.addEventListener('scroll', function () {
+    var scrollPos = window.scrollY;
 
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    document.getElementById("navbar").style.padding = "5px 20px";
-    navLogo.style.maxHeight = "50px";
-} else {
-    document.getElementById("navbar").style.padding = "20px";
-    navLogo.style.maxHeight = "100px";
-  }
-}
+    if (scrollPos > 50) { 
+        logo.style.maxHeight = '50px';
+    } else {
+        logo.style.maxHeight = '100px'; 
+    }
+});
 
 // Notifications
 
@@ -31,6 +29,10 @@ function createNotification(message, type='default') {
     case 'warning':
       message = 'WARNING: ' + message
       notification.classList.add('warNot');
+      break
+    case 'success':
+      /*message = 'SUCCESS: ' + message*/
+      notification.classList.add('sucNot');
       break
     default:
       notification.classList.add('defNot');
@@ -82,7 +84,9 @@ function get_flashed_messages() {
   }
   }).then(response => { return response.json()
   }).then(data => {
+    console.log(data);
     for (var not of data){
+      console.log(not);
       if (not.type) {
         createNotification(not.message, not.type)
       } else {

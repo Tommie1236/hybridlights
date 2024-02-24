@@ -3,21 +3,70 @@
 {% block title %}Contact{% endblock %}
 
 {% block head %}
-	<!-- <link rel="stylesheet" href="{{url_for('static', filename = 'css/contact.css')}}"> -->
+	<link rel="stylesheet" href="{{url_for('static', filename = 'css/contact.css')}}">
 {% endblock %}
 
 {% block content %}
-	<center>
-		<h1>Contact</h1>
+	<div id='box1'>
+		<div class="whiteBorder">
+			<h3 class="white" style="padding: 10px;">Contact Info</h3>
+			<div id="infoBox">
+				<a href="mailto:info@hybridlights.nl?subject=Reservering Hybridlights" class="contBox accent-green">
+					<h3 class="accent-green noMargin noUnderline">General questions</h3>
+					<p style="margin: 0;">info@hybridlights.nl</p>
+				</a>
+				<a href="mailto:reserven@hybridlights.nl?subject=Reservering Hybridlights" class="contBox accent-yellow">
+					<h3 class="accent-yellow noMargin noUnderline">Reservations</h3>
+					<p style="margin: 0;">reserveren@hybridlights.nl</p>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div id='box2'>
+		<img id="formImg" src="{{url_for('static', filename='assets/hybridlights-img-6.jpg')}}">
+		<div id="form" class="contBox" method="post">
+			<label for="formFName">First Name</label>
+			<input id="formFName" type="text" placeholder="First Name">
+			<label for="fromLName">Last Name</label>
+			<input id="formLName" type="text" placeholder="Last Name">
+			<label for="fromEmail">Email</label>
+			<input id="formEmail" type="email" placeholder="Email">
+			<label for="formType">Type</label>
+			<select id="formType">
+				<option value="reserve">reserve</option>
+				<option value="question">question</option>
+			</select>
+			<label id="formDateLbl" for="formDate">Date</label>
+			<input id="formDate" type="date">
+			<label id="formTimeLbl" for="formTime">Time</label>
+			<input id="formTime" type="time">
+			<label for="formMessage">Message</label>
+			<textarea id="formMessage" placeholder="Message"></textarea>
+			<button id="formSubmit" class="accent-green" onclick="sendForm()">Send</button>
+		</div>
+	</div>
+	
+		
+	<!-- <h1>Contact</h1>
 		<p>The site is still under development.</p>
 		<p>This page will come soon.</p>
-		<a href="/">Go Back</a>
+		<a href="/">Go Back</a> -->
+	<h3>Todo</h3>
+	<ul>
+		<li>- add contact form for reservations or questions</li>
+	</ul>
+	<div>
+		<h4>!!form still in development!!</h4>
+	- name <br>
+	- email <br>
+	- type (reserve, question) <br>
+	reserve - date <br>
+	- message <br>
+	</div>
 
-		<h3>Todo</h3>
-		<ul>
-			<li>- add contact form for reservations or questions</li>
-			<li>- add contact info</li>
-		</ul>
-		<p></p>
-	</center>
+	<p></p>
+{% endblock %}
+
+{% block js %}
+	<script src="/static/js/contact.js"></script>
 {% endblock %}

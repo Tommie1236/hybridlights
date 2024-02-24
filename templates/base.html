@@ -7,7 +7,7 @@
 		{% endblock %}
 	</head>
 	<body>
-		<div id="navbar">
+		<header id="navbar">
 			<a href="/{{lang}}/index.html" style="display: inline-block;">
 				<img id="nav-logo" src="/static/assets/logo-c.png" alt="hybridcraft">
 			</a>
@@ -28,15 +28,18 @@
 					{% endfor %}
 				</div>
 			-->
-		</div>
-		<div id="content">
+		</header>
+		<main>
 			{% block content %}{% endblock %}
-		</div>
-
-		<div id="footer">
-			<a href="/">
-				<img id="fLogo" src="/static/assets/logo-c.png" alt="hbridlights">
-			</a>
+		</main>
+		<footer>
+			<div id="notCon"></div>
+			<div style="text-align: center;">
+				<a href="/">
+					<img id="fLogo" src="/static/assets/logo-c.png" alt="hbridlights">
+				</a>
+				<p class="white" style="margin: 0;">Version: {{version}}</p>
+			</div>
 			<div id="fSiteMap">
 				<h4 class="white">Sitemap</h4>
 				<p class="white">
@@ -55,10 +58,7 @@
 			<div id="fLegal">
 				<h4 class="white">Legal ?</h4>
 			</div>
-		</div>
-
-		<div id="notCon"></div>
-
+		</footer>
 		<script src="/static/js/base.js"></script>
 		{% block js %}{% endblock %}
 	</body>

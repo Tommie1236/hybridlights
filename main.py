@@ -2,7 +2,7 @@ from flask import Flask, render_template, send_file, redirect, request, flash, R
 from jinja2.exceptions import TemplateNotFound
 
 
-__version__ = '0.1'
+__version__ = '0.1-dev'
 
 __supported_languages__ = [
 	'en-us'
@@ -13,7 +13,9 @@ app = Flask(__name__.split('.')[0])
 app.config['SECRET_KEY'] = '08c228c4408845f48c579a04a000b218'
 
 
-
+def pflash(*args, **kwargs):
+	print(*args, **kwargs)
+	flash(*args, **kwargs)
 
 # Default redirects
 
@@ -39,9 +41,14 @@ def about_us(lang):
 def pricing(lang):
 	return render_template(f'{lang}/pricing.html', lang=lang)
 
-@app.route('/<lang>/contact.html')
+@app.route('/<lang>/contact.html', methods=['GET', 'POST'])
 def contact(lang):
-	return render_template(f'{lang}/contact.html', lang=lang)
+	match request.method:
+		case 'GET':
+			return render_template(f'{lang}/contact.html', lang=lang)
+		case 'POST':
+			pflash('Thank you for your message!', 'success')
+			return Response(status=200)
 
 
 
@@ -65,10 +72,10 @@ def flash_messages():
 	catagory
 	"""
 	# notification tests:
-	# flash('err-test', 'error')
-	# flash('war-test', 'warning')
-	# flash('def-test')
-	# flash('newline\ntest')
+	# pflash('err-test', 'error')
+	# pflash('war-test', 'warning')
+	# pflash('def-test')
+	# pflash('newline\ntest')
 
 	options = [
 		'with-categories',
@@ -97,12 +104,12 @@ def flash_messages():
 
 @app.errorhandler(TemplateNotFound)
 def TemplateNotFoundHandler(e):
-	flash("Page doesn't exist.\nRedirecting to homepage.", 'error')
+	pflash("Page doesn't exist.\nRedirecting to homepage.", 'error')
 	return redirect('/')
 
 @app.errorhandler(404)
 def pageNotFoundHandler(e):
-	flash("Page doesn't exist.\nRedirecting to homepage.", 'error')
+	pflash("Page doesn't exist.\nRedirecting to homepage.", 'error')
 	return redirect('/')
 
 

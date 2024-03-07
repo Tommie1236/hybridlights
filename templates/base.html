@@ -2,6 +2,8 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="/static/css/base.css">
+		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 		<title>{% block title %}{% endblock %} - Hybridlights(dev)</title>
 		{% block head %}
 		{% endblock %}
@@ -9,36 +11,22 @@
 	<body>
 		<header id="navbar">
 			<a href="/{{lang}}/index.html" style="display: inline-block;">
-				<img id="nav-logo" src="/static/assets/logo-c.png" alt="hybridcraft">
+				<img id="nav-logo" src="/static/assets/logo-c-rmbg.png" alt="hybridcraft">
 			</a>
 			<ul class="nav-item">
 				<li class="nav-li"><a href="/{{lang}}/about-us.html"><button class="nav-but">about us</button></a></li>
 				<li class="nav-li"><a href="/{{lang}}/pricing.html"><button class="nav-but">pricing</button></a></li>
 				<li class="nav-li"><a href="/{{lang}}/contact.html"><button class="nav-but">contact</button></a></li>
-			</ul>
-			<!--
-				<div id="language-selector" onclick="toggleLanguageOptions()">
-					<img class="lang-img" src="/static/assets/flags/{{lang}}.svg" alt="{{lang}}">
-					{% for language in avl_languages %}
-					{% if language != lang %}
-					<a href="{{ request.path.replace(lang, language) }}" class="language-option">
-						<img src="/static/assets/flags/{{ language }}.svg" alt="{{ language }}">
-					</a>
-					{% endif %}
-					{% endfor %}
-				</div>
-			-->
 		</header>
 		<main>
 			{% block content %}{% endblock %}
 		</main>
 		<footer>
-			<div id="notCon"></div>
-			<div style="text-align: center;">
+			<div>
 				<a href="/">
-					<img id="fLogo" src="/static/assets/logo-c.png" alt="hbridlights">
+					<img id="fLogo" src="/static/assets/logo-c-rmbg.png" alt="hbridlights">
 				</a>
-				<p class="white" style="margin: 0;">Version: {{version}}</p>
+				<p class="white">Version: {{version}}</p>
 			</div>
 			<div id="fSiteMap">
 				<h4 class="white">Sitemap</h4>

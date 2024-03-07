@@ -1,16 +1,18 @@
 from flask import Flask, render_template, send_file, redirect, request, flash, Response, get_flashed_messages, jsonify
 from jinja2.exceptions import TemplateNotFound
+import secrets
 
 
-__version__ = '0.1-dev'
+version_context = (0, 1, "dev")
+__version__ = '-'.join(str(x) for x in version_context)
 
 __supported_languages__ = [
-	'en-us'
-]
+	'nl-nl'
+] # since we're NOT in england or the united states, i suggest we keep our site native dutch.
 
 
 app = Flask(__name__.split('.')[0])
-app.config['SECRET_KEY'] = '08c228c4408845f48c579a04a000b218'
+app.secret_key = secrets.token_hex(24)
 
 
 def pflash(*args, **kwargs):
@@ -21,7 +23,7 @@ def pflash(*args, **kwargs):
 
 @app.route('/')
 def root():
-	return redirect('/en-us/index.html')
+	return redirect('/nl-nl/index.html')
 
 @app.route('/<lang>')
 def lang(lang):
@@ -53,7 +55,6 @@ def contact(lang):
 
 
 # Misc endpoints
-
 @app.context_processor
 def load_jinja_defaults():
 	return {
@@ -65,40 +66,6 @@ def load_jinja_defaults():
 def favicon():
 	return send_file('static/assets/favicon-temp.png')
 
-@app.route('/flash-messages')
-def flash_messages():
-	"""
-	with_categories
-	catagory
-	"""
-	# notification tests:
-	# pflash('err-test', 'error')
-	# pflash('war-test', 'warning')
-	# pflash('def-test')
-	# pflash('newline\ntest')
-
-	options = [
-		'with-categories',
-		'catagory'
-		]
-
-	kwargs = dict()
-	if request.args:
-		kwargs = dict(request.args)
-
-	if request.headers:
-		for key, value in dict(request.headers).items():
-			key = key.lower()
-			if key in options:
-				kwargs[key.replace('-', '_')] = value
-	
-	if kwargs.get('with_categories'):
-		flash_messages = []
-		for mtype, message in get_flashed_messages(**kwargs):
-			flash_messages.append({'message': message, 'type': mtype})
-		return jsonify(flash_messages)
-	
-	return jsonify(get_flashed_messages(**kwargs))
 
 # Error Handlers
 
